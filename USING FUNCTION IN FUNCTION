@@ -1,0 +1,18 @@
+def isOdd(num):
+    if num % 2 != 0:
+        return True
+    else:
+        return False
+    
+
+def evenify(num):
+   odd_num = isOdd()
+   if odd_num == True:
+       even_num = num * 2
+       return even_num
+   else:
+       even_num = num
+       return even_num 
+
+result = evenify(23)
+print(f"The evenified number is {result}")

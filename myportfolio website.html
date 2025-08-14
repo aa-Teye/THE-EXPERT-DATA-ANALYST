@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Report: Alex Teye Ametepey - GLOAMEG SOLUTIONS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The application is structured as an interactive narrative rather than a static document. It uses a top-down thematic flow: Hero, The Journey (interactive timeline), Skills Showcase (interactive chart and cards), Company Profile, and Reflection. This structure was chosen to guide the user through the internship story, starting with the work done and connecting it directly to the skills gained. The interactive elements (timeline and chart filters) encourage exploration and make the content more digestible and engaging than a traditional report format, enhancing user understanding of the cause-and-effect relationship between tasks and learning. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Work Responsibilities -> Goal: Show process -> Viz: Interactive Timeline (HTML/CSS/JS) -> Interaction: Click steps to reveal details -> Justification: Turns a list into an engaging, step-by-step story.
+        - Report Info: Technical & Soft Skills -> Goal: Organize & Compare -> Viz: Doughnut Chart (Chart.js) + Filterable Cards (HTML/CSS/JS) -> Interaction: Click chart segment to filter skill cards -> Justification: Provides a high-level overview of skill categories while allowing a drill-down into specific skills, a modern way to present qualitative data.
+        - Report Info: Company Org Structure -> Goal: Inform -> Viz: Diagram (HTML/CSS) -> Interaction: None -> Justification: A clean, accessible, non-graphical way to display hierarchical information.
+        - Report Info: Conclusion/Reflection -> Goal: Emphasize key takeaways -> Viz: Stylized Quote Blocks (HTML/CSS) -> Interaction: None -> Justification: Highlights the most impactful personal insights from the report.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #4A4A4A;
+        }
+        .active-tab {
+            background-color: #A78BFA;
+            color: #FFFFFF;
+            transform: scale(1.05);
+        }
+        .skill-card {
+            transition: all 0.3s ease;
+            backface-visibility: hidden;
+        }
+        .skill-card.hidden {
+            transform: scale(0.9);
+            opacity: 0;
+            display: none;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold text-violet-600">Alex Teye Ametepey</h1>
+                    <p class="text-sm text-gray-500">Internship Experience at GLOAMEG SOLUTIONS</p>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#journey" class="text-gray-600 hover:text-violet-600 transition">The Journey</a>
+                    <a href="#skills" class="text-gray-600 hover:text-violet-600 transition">Skills Showcase</a>
+                    <a href="#company" class="text-gray-600 hover:text-violet-600 transition">Company Profile</a>
+                    <a href="#reflection" class="text-gray-600 hover:text-violet-600 transition">Reflection</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="journey" class="mb-24 text-center scroll-mt-20">
+            <h2 class="text-3xl font-bold mb-4">The Development Journey</h2>
+            <p class="max-w-3xl mx-auto text-gray-600 mb-12">My internship involved a full web development lifecycle. I transformed a concept into a fully functional, manageable website. Click through the stages below to see how each step contributed to the final product.</p>
+
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-8">
+                <div id="timeline-tabs" class="flex justify-center p-2 bg-gray-100 rounded-full shadow-inner w-full md:w-auto">
+                    <button data-tab="1" class="timeline-tab text-sm md:text-base font-medium py-2 px-4 rounded-full transition-all duration-300">1. HTML/CSS Foundation</button>
+                    <button data-tab="2" class="timeline-tab text-sm md:text-base font-medium py-2 px-4 rounded-full transition-all duration-300">2. React UI</button>
+                    <button data-tab="3" class="timeline-tab text-sm md:text-base font-medium py-2 px-4 rounded-full transition-all duration-300">3. WordPress CMS</button>
+                </div>
+            </div>
+
+            <div id="timeline-content" class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg transition-all duration-500 min-h-[200px] flex items-center justify-center">
+                <div id="content-1" class="timeline-content-panel">
+                    <h3 class="text-2xl font-bold text-violet-700 mb-2">Building the Static Foundation</h3>
+                    <p class="text-gray-700">The first step was to build the website's user interface from the ground up using core technologies. I focused on creating a clean, responsive, and visually appealing design that would serve as the blueprint for the entire project. This ensured a solid and accessible structure before adding dynamic functionality.</p>
+                </div>
+                <div id="content-2" class="timeline-content-panel hidden">
+                    <h3 class="text-2xl font-bold text-violet-700 mb-2">Creating a Dynamic Experience</h3>
+                    <p class="text-gray-700">Next, I rebuilt the front-end using the React library. This allowed for the creation of interactive components and a more fluid user experience. By managing state and building a component-based architecture, the website became more dynamic, efficient, and scalable.</p>
+                </div>
+                <div id="content-3" class="timeline-content-panel hidden">
+                    <h3 class="text-2xl font-bold text-violet-700 mb-2">Migration & Management</h3>
+                    <p class="text-gray-700">The final stage involved migrating the entire application to the WordPress Content Management System (CMS). This critical step made the site easy for clients to manage and update. I learned to integrate front-end code into a managed environment and configure the site for deployment, bridging the gap between custom development and user-friendly content management.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-20 border-gray-200">
+
+        <section id="skills" class="mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-4">Skills Showcase</h2>
+            <p class="max-w-3xl mx-auto text-gray-600 mb-12 text-center">The internship was a period of immense growth, both technically and professionally. The chart below categorizes the key skills I developed. Click on a category to filter the skills I applied during the projects.</p>
+            
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="w-full lg:w-1/3">
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+                <div class="w-full lg:w-2/3">
+                    <div id="skills-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-20 border-gray-200">
+
+        <section id="company" class="mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-12">Company Profile: GLOAMEG SOLUTIONS</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-violet-700 mb-4">Mission & Services</h3>
+                    <p class="text-gray-600 mb-6">GLOAMEG SOLUTIONS provides comprehensive technological solutions for businesses, with a mission to empower its clients through innovative and reliable technology.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3"><span class="bg-violet-100 text-violet-700 font-bold text-xs py-1 px-2 rounded-full">Web Development</span></div>
+                        <div class="flex items-center gap-3"><span class="bg-green-100 text-green-700 font-bold text-xs py-1 px-2 rounded-full">IT Consulting</span></div>
+                        <div class="flex items-center gap-3"><span class="bg-blue-100 text-blue-700 font-bold text-xs py-1 px-2 rounded-full">Digital Marketing</span></div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-violet-700 mb-4">Organizational Structure</h3>
+                    <p class="text-gray-600 mb-6">The company uses a collaborative structure to ensure efficient project delivery. My role was within the Technical Team.</p>
+                    <div class="space-y-4">
+                        <div class="bg-gray-100 p-3 rounded-lg text-center font-semibold">Management</div>
+                        <div class="w-px h-6 bg-gray-300 mx-auto"></div>
+                        <div class="flex justify-center gap-4">
+                            <div class="bg-gray-100 p-3 rounded-lg text-center font-semibold border-2 border-violet-400">Technical Team</div>
+                            <div class="bg-gray-100 p-3 rounded-lg text-center font-semibold">Sales & Marketing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-20 border-gray-200">
+        
+        <section id="reflection" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-12">Final Reflection</h2>
+            <div class="max-w-3xl mx-auto bg-violet-600 text-white p-8 md:p-12 rounded-2xl shadow-2xl">
+                <p class="text-lg md:text-xl italic leading-relaxed">"This internship was an intensive and highly valuable experience that solidified my passion for a career in front-end development. It taught me that every career path starts with a first step of courage and hard work. My internship was not just about the technical skills I acquired, but about the fundamental lesson that if you take that first step, you will be fine."</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-24">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2023 Alex Teye Ametepey. Internship Report.</p>
+            <p class="text-sm text-gray-400 mt-2">This interactive report was generated to showcase the experience gained at GLOAMEG SOLUTIONS.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const skillsData = {
+                technical: [
+                    { name: 'HTML & CSS', desc: 'Built responsive and visually appealing website foundations from scratch.' },
+                    { name: 'React', desc: 'Developed dynamic and interactive user interfaces with a component-based architecture.' },
+                    { name: 'WordPress & PHP', desc: 'Created custom themes and templates to build manageable client websites.' },
+                    { name: 'Development Workflow', desc: 'Experienced the full lifecycle from coding to deployment and CMS integration.' }
+                ],
+                soft: [
+                    { name: 'Result-Orientedness', desc: 'Focused on delivering complete, functional projects under strict deadlines.' },
+                    { name: 'Attention to Detail', desc: 'Ensured design consistency and a bug-free experience through meticulous debugging.' },
+                    { name: 'Problem-Solving', desc: 'Learned that any technical challenge can be overcome with research and courage.' },
+                    { name: 'Critical Thinking', desc: 'Prioritized client needs and long-term utility to provide the best possible solutions.' },
+                    { name: 'Team Collaboration', desc: 'Used tools like Git, GitHub, and Slack for efficient and aligned teamwork.' },
+                    { name: 'Communication', desc: 'Clearly presented ideas, progress, and roadblocks to my supervisor and team.' }
+                ]
+            };
+
+            const skillsGrid = document.getElementById('skills-grid');
+
+            function createSkillCard(skill, category) {
+                const card = document.createElement('div');
+                card.className = 'skill-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300';
+                card.dataset.category = category;
+                card.innerHTML = `
+                    <h4 class="font-bold text-lg text-violet-700 mb-2">${skill.name}</h4>
+                    <p class="text-gray-600 text-sm">${skill.desc}</p>
+                `;
+                return card;
+            }
+
+            function populateSkills(filter = 'all') {
+                skillsGrid.innerHTML = '';
+                let skillsToShow = [];
+                if (filter === 'all' || filter === 'technical') {
+                    skillsToShow.push(...skillsData.technical.map(s => ({...s, category: 'technical'})));
+                }
+                if (filter === 'all' || filter === 'soft') {
+                    skillsToShow.push(...skillsData.soft.map(s => ({...s, category: 'soft'})));
+                }
+
+                skillsToShow.forEach(skill => {
+                    skillsGrid.appendChild(createSkillCard(skill, skill.category));
+                });
+            }
+
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            const skillsChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Technical Skills', 'Soft Skills'],
+                    datasets: [{
+                        label: 'Skills Breakdown',
+                        data: [skillsData.technical.length, skillsData.soft.length],
+                        backgroundColor: [
+                            'rgba(139, 92, 246, 0.8)',
+                            'rgba(96, 165, 250, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(139, 92, 246, 1)',
+                            'rgba(96, 165, 250, 1)'
+                        ],
+                        borderWidth: 1,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    onClick: (event, elements) => {
+                        if (elements.length > 0) {
+                            const i = elements[0].index;
+                            const label = skillsChart.data.labels[i];
+                            if (label === 'Technical Skills') {
+                                populateSkills('technical');
+                            } else if (label === 'Soft Skills') {
+                                populateSkills('soft');
+                            }
+                        } else {
+                            populateSkills('all');
+                        }
+                    }
+                }
+            });
+
+            const timelineTabs = document.querySelectorAll('.timeline-tab');
+            const timelineContents = document.querySelectorAll('.timeline-content-panel');
+
+            function switchTab(tabNumber) {
+                timelineTabs.forEach(tab => {
+                    tab.classList.remove('active-tab');
+                    if(tab.dataset.tab === tabNumber) {
+                        tab.classList.add('active-tab');
+                    }
+                });
+                timelineContents.forEach(content => {
+                    content.classList.add('hidden');
+                    if(content.id === `content-${tabNumber}`) {
+                        content.classList.remove('hidden');
+                    }
+                });
+            }
+
+            document.getElementById('timeline-tabs').addEventListener('click', (e) => {
+                if (e.target.matches('.timeline-tab')) {
+                    switchTab(e.target.dataset.tab);
+                }
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            switchTab('1');
+            populateSkills('all');
+        });
+    </script>
+</body>
+</html>
